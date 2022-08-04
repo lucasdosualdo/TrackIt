@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from './common';
 import {Link} from 'react-router-dom'
 
-export default function LoginPage () {
+export default function SignUpPage () {
     return (
         <>
         <Image>
@@ -21,15 +21,25 @@ export default function LoginPage () {
             placeholder='senha'
             required
             />
+            <input
+            type='text'
+            placeholder='nome'
+            required
+            />
+            <input
+            type='url'
+            placeholder='foto'
+            required
+            />           
             <Button>
-                <h3>Entrar</h3>
+                <h3>Cadastrar</h3>
             </Button>           
         </Login>            
         <div className='question'>
-            <Link to ='/cadastro'>
-            <h6>Não tem uma conta? Cadastra-se!</h6>   
+            <Link to ='/'>
+            <h6>Já tem uma conta? Faça login!</h6>   
             </Link>          
-        </div>                                
+        </div> 
         </>
     )
 }

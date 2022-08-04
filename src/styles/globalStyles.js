@@ -33,7 +33,11 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	width: 100vw;
+  height: 100vh;
+  font-family: 'Lexend Deca';
 }
+
 ol, ul {
 	list-style: none;
 }
@@ -54,8 +58,20 @@ table {
 
 * {
   box-sizing: border-box;
-  width: 100vw;
-  height: 100vh;
+  font-family: 'Lexend Deca';
+}
+
+h6 {
+	color: #52B6FF;
+	font-size: 14px;
+	text-decoration-line: underline;
+	
+}
+.question {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 25px;
 }
 
 `;
