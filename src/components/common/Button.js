@@ -9,7 +9,7 @@ export default function Button ({children, ...otherProps}){
 }
 
 const Wrapper=styled.button`
-background-color: #52B6FF;
+background-color: ${(props)=> (props.disabled ? '#86CCFF' : '#52B6FF')};
 min-width: 270px;
 min-height: 45px;
 display: flex;
@@ -17,6 +17,7 @@ justify-content: center;
 align-items: center;
 border-radius: 5px;
 border: none;
+
 h3 {
     color: white;
     font-weight: 400;

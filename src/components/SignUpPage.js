@@ -1,38 +1,105 @@
 import logo from '../assets/images/logo-trackit.svg';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button } from './common';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom';
+import axios from 'axios';
+import UserContext from '../contexts/UserContext';
+import { ThreeDots } from "react-loader-spinner";
 
 export default function SignUpPage () {
+    const {email, setEmail}=useContext(UserContext);
+    const {password, setPassword}=useContext(UserContext);
+    const {name, setName}=useContext(UserContext);
+    const {image, setImage}=useContext(UserContext);
+    const [required, setRequired] = useState(true);
+    const [disabled, setDisabled] = useState(false);
+
+    let navigate= useNavigate();
+
+    function SignUpForm(e) {
+        setRequired(false);
+        setDisabled(true);
+        e.preventDefault();
+        const body = {
+            email,
+            name,
+            image,
+            password
+        }
+        console.log(body);
+        const request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up', body);
+        request.then(answer => {
+            setEmail('');
+            setPassword('');
+            setName('');
+            setImage('');
+            navigate('/');
+        });
+            
+            
+        request.catch(()=>{
+            setRequired(true);
+            setDisabled(false);
+            setEmail('');
+            setPassword('');
+            setName('');
+            setImage('');
+            alert('Falha ao realizar o cadastro.')
+        });
+    }
+
     return (
         <>
         <Image>
         <img src={logo}/>
         </Image>                      
-        <Login>
+        <Login onSubmit = {SignUpForm}>
             <input
             type='text'
             placeholder='email'
-            required
+            onChange={((e)=>setEmail(e.target.value))}
+            value={email}
+            required={required}
+            disabled={disabled}
             />
             <input
             type='password'
             placeholder='senha'
-            required
+            onChange={((e)=>setPassword(e.target.value))}
+            value={password}
+            required={required}
+            disabled={disabled}
             />
             <input
             type='text'
             placeholder='nome'
-            required
+            onChange={((e)=>setName(e.target.value))}
+            value={name}
+            required={required}
+            disabled={disabled}
             />
             <input
             type='url'
             placeholder='foto'
-            required
+            onChange={((e)=>setImage(e.target.value))}
+            value={image}
+            required={required}
+            disabled={disabled}
             />           
-            <Button>
-                <h3>Cadastrar</h3>
+            <Button disabled={disabled}>
+                {required ? (
+                    <h3>Cadastrar</h3>
+                ) : (
+                <ThreeDots
+                    type="ThreeDots"
+                    color="rgb(250, 250, 250)"
+                    height={13}
+                    width={51}
+                    timeout={0}
+                />
+                
+                )}           
             </Button>           
         </Login>            
         <div className='question'>
@@ -72,6 +139,7 @@ min-width: 270px;
 min-height: 45px;
 font-weight: 400;
 font-size: 20px;
+padding-left: 7px;
 &::placeholder{
     color: #DBDBDB;
 }

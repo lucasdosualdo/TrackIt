@@ -62,8 +62,10 @@ min-width: 270px;
 min-height: 45px;
 font-weight: 400;
 font-size: 20px;
+padding-left: 7px;
 &::placeholder{
     color: #DBDBDB;
+    
 }
 }
 `
