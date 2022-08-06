@@ -9,7 +9,8 @@ import axios from 'axios';
 
 export default function LoginPage () {
     const {email, setEmail}=useContext(UserContext);
-    const {password, setPassword}=useContext(UserContext); 
+    const {password, setPassword}=useContext(UserContext);
+    const {image, setImage}=useContext(UserContext); 
     const [required, setRequired] = useState(true);
     const [disabled, setDisabled] = useState(false);
     let navigate= useNavigate();
@@ -27,6 +28,11 @@ export default function LoginPage () {
         request.then(answer => {
             setEmail('');
             setPassword('');
+            console.log(answer.data);
+            localStorage.setItem('trackit', answer.data.token);
+            console.log(localStorage.getItem('trackit'));
+            setImage(answer.data.image);
+            console.log(image);
             navigate('/hoje');
         });
             

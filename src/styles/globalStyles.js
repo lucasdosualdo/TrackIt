@@ -61,6 +61,13 @@ table {
   font-family: 'Lexend Deca';
 }
 
+h1 {
+	color: #FFFFFF;
+	font-family: 'Playball';
+font-weight: 400;
+font-size: 40px;
+}
+
 h6 {
 	color: #52B6FF;
 	font-size: 14px;
