@@ -17,7 +17,7 @@ justify-content: center;
 align-items: center;
 border-radius: 5px;
 border: none;
-
+cursor: pointer;
 h3 {
     color: white;
     font-weight: 400;

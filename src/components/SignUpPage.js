@@ -1,17 +1,17 @@
 import logo from '../assets/images/logo-trackit.svg';
 import styled from 'styled-components';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { Button } from './common';
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import UserContext from '../contexts/UserContext';
 import { ThreeDots } from "react-loader-spinner";
 
 export default function SignUpPage () {
-    const {email, setEmail}=useContext(UserContext);
-    const {password, setPassword}=useContext(UserContext);
-    const {name, setName}=useContext(UserContext);
-    const {image, setImage}=useContext(UserContext);
+    
+    const [email, setEmail]=useState([]);
+    const [password, setPassword]=useState([]);
+    const [name, setName]=useState([]);
+    const [image, setImage]=useState([]);
     const [required, setRequired] = useState(true);
     const [disabled, setDisabled] = useState(false);
 
@@ -140,6 +140,7 @@ min-height: 45px;
 font-weight: 400;
 font-size: 20px;
 padding-left: 7px;
+background-color: ${(props)=> (props.disabled ? '#F2F2F2' : '#FFFFFF')};
 &::placeholder{
     color: #DBDBDB;
 }
