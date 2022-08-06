@@ -68,6 +68,12 @@ font-weight: 400;
 font-size: 40px;
 }
 
+h4 {
+	color: #126BA5;
+	font-weight: 400;
+	font-size: 23px;
+}
+
 h6 {
 	color: #52B6FF;
 	font-size: 14px;
