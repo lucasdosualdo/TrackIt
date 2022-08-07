@@ -10,8 +10,8 @@ export default function Button ({children, ...otherProps}){
 
 const Wrapper=styled.button`
 background-color: ${(props)=> (props.disabled ? '#86CCFF' : '#52B6FF')};
-min-width: 270px;
-min-height: 45px;
+width: 270px;
+height: 45px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -21,7 +21,22 @@ cursor: pointer;
 h3 {
     color: white;
     font-weight: 400;
-font-size: 22px;
+font-size: ${(props)=>(props.medium ? '16px' : '25px')};
 }
-
+${(props)=>{
+    if (props.tiny) {
+        return `
+        width: 40px;
+        height: 35px;
+        `
+    }
+    if (props.medium) {
+        return `
+        width: 85px;
+        height: 35px;
+        font-size: 16px;
+        color: white;
+        `
+    }
+}}
 `

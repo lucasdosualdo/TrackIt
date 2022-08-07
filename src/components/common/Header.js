@@ -10,7 +10,6 @@ export default function Header () {
         <HeaderStyle>
            <h1>TrackIt</h1>
            <img src={teste}/>
-           {console.log(teste)}
         </HeaderStyle>
     )
 }

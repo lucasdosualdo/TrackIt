@@ -6,6 +6,7 @@ import UserContext from "../contexts/UserContext";
 import { useState } from 'react';
 import Today from "./Today";
 import History from "./History";
+import Habits from "./Habits";
 
 export default function App() {
     const [email, setEmail]=useState('');
@@ -14,6 +15,7 @@ export default function App() {
     const [image, setImage]=useState('');
     const [day, setDay]=useState('testandoday');
     const [date, setDate]=useState('');
+    const [weekday, setWeekday]=useState([]);
 
     return (
         <>
@@ -38,6 +40,7 @@ export default function App() {
             <Route path='/cadastro' element={<SignUpPage/>}/>
             <Route path='/hoje' element={<Today/>}/>
             <Route path='/historico' element = {<History/>}/>
+            <Route path='/habitos' element = {<Habits/>}/>
         </Routes>
         </BrowserRouter>
         </UserContext.Provider>

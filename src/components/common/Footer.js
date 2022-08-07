@@ -6,9 +6,12 @@ import { Link } from 'react-router-dom';
 export default function Footer () {
     return (
         <FooterStyle>
-
+            <Link to ='/habitos'>
             <p>Hábitos</p>
+            </Link>
+            <Link to = '/hoje'>
             <div>Hoje</div>
+            </Link>
             <Link to ='/historico'>
             <p>Histórico</p>
             </Link>

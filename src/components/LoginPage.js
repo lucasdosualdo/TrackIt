@@ -68,7 +68,7 @@ export default function LoginPage () {
             required={required}
             disabled={disabled}
             />
-            <Button disabled={disabled}>
+            <Button disabled={disabled} large>
             {required ? (
                     <h3>Entrar</h3>
                 ) : (

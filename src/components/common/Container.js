@@ -11,8 +11,6 @@ padding: 100px 18px 0 18px;
 background-color: #F2F2F2;
 width: 100%;
 height: 100vh;
-display: flex;
-flex-direction: column;
 h4 {
     margin-bottom: 5px;
 }
