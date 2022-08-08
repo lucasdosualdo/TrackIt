@@ -9,6 +9,7 @@ import axios from 'axios';
 
 export default function LoginPage () {
     const {user, setUser} = useContext(UserContext);
+    const {config, setConfig} = useContext(UserContext);
     const [required, setRequired] = useState(true);
     const [disabled, setDisabled] = useState(false);
     const [loginUser, setLoginUser] = useState({
@@ -24,8 +25,14 @@ export default function LoginPage () {
         const request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', loginUser);
         request.then(answer => {
             localStorage.setItem('trackit', answer.data.token);
+            console.log(localStorage.getItem('trackit'));
             setUser(answer.data);
+            setConfig({
+                headers: {'Authorization': `Bearer ${answer.data.token}`}
+            });
             navigate('/hoje');
+            console.log(config);
+            console.log(answer.data.token);
         });      
             
         request.catch(()=>{

@@ -1,22 +1,24 @@
 import styled from "styled-components"
-import { useContext } from 'react';
-import UserContext from "../contexts/UserContext";
 
-export default function Weekdays () {
-    const {habit, setHabit}=useContext(UserContext);
+export default function WeekDays ({nonEditable, disabled, habit, setHabit}) {
     const days=['D','S','T','Q','Q','S','S'];
 
     function selectDay(index){
-        if (habit.weekDays.includes(index)) {
-            setHabit({...habit, weekDays: habit.weekDays.filter(value => value!==index)})
+        if (habit.days.includes(index)) {
+            setHabit({...habit, days: habit.days.filter(value => value!==index)})
         } else {
-            setHabit({...habit, weekDays: [...habit.weekDays, index]})
+            setHabit({...habit, days: [...habit.days, index]})
         }
     }
 
 return (
     <WeekdayBox >
-    {days.map((day, index) => <Weekday habit={habit} key = {index} index={index} onClick={()=>selectDay(index)}>
+    {days.map((day, index) => <Weekday 
+    onClick={()=>selectDay(index)} 
+    habit={habit} 
+    key = {index} 
+    index={index} 
+    disable = {disabled && nonEditable}>
             {day}
             </Weekday>)}
     </WeekdayBox>
@@ -24,7 +26,7 @@ return (
 }
 
 function ChangeBGColor(index, habit) {
-    if (habit.weekDays.includes(index)) {
+    if (habit.days.includes(index)) {
         return "#DBDBDB";
     } else {
         return "#FFFFFF";
@@ -32,7 +34,7 @@ function ChangeBGColor(index, habit) {
 }
 
 function ChangeColor(index, habit) {
-    if (habit.weekDays.includes(index)) {
+    if (habit.days.includes(index)) {
         return "#FFFFFF";
     } else {
         return "#DBDBDB";

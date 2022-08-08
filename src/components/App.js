@@ -15,9 +15,10 @@ export default function App() {
     const [date, setDate]=useState('');
     const [render, setRender]=useState(false);
     const [habit, setHabit] = useState({
-        habitName: "",
-        weekDays: [],
-    })
+        name: "",
+        days: [],
+    });
+    const [config, setConfig]=useState({});
 
     return (
         <>
@@ -34,7 +35,9 @@ export default function App() {
             habit,
             setHabit,
             render,
-            setRender
+            setRender,
+            config,
+            setConfig
         }}>
         <BrowserRouter>
         <Routes>

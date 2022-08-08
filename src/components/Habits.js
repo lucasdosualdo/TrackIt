@@ -10,13 +10,34 @@ import Habit from "./Habit"
 import axios from "axios"
 
 export default function Habits () {
-    const {habit, setHabit}= useContext(UserContext);
+    
     const [clicked, setClicked]=useState(false);
     const [habitsList, setHabitsList]=useState([]);
     const [refresh, setRefresh]=useState(false);
     const {user} = useContext(UserContext);
+    const {config} = useContext(UserContext);
+    const [habit, setHabit] = useState({
+        name: "",
+        days: [],
+    });
 
-    
+    useEffect(() => {
+        const promise = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', config);
+        promise.then(response=>{
+            setHabitsList(response.data);
+        })
+    }, [user, refresh])
+
+    function deleteHabit(habit) {
+        let resultado = window.confirm("Você tem certeza que deseja excluir este hábito?");
+        if (resultado === true) {
+            const promise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${habit.id}`, config)
+            promise.then(() => {
+                setRefresh(!refresh);
+            });
+        }
+    }
+
     return (
         <>
         <Header/>
@@ -32,6 +53,8 @@ export default function Habits () {
             setClicked={setClicked}
             refresh = {refresh}
             setRefresh={setRefresh}
+            habit={habit} 
+            setHabit={setHabit}
             /> :
               ''
             }
@@ -40,9 +63,10 @@ export default function Habits () {
             </Description> :
             habitsList.map((habit, index)=> 
             <Habit 
-            habit={habit} 
             key={index} 
-            index={index}/>)}
+            index={index} 
+            habit={habit}
+            deleteHabit={() => deleteHabit(habit)}/>)}
                                  
         </Container>
         <Footer/>

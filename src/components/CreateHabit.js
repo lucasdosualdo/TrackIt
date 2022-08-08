@@ -6,26 +6,26 @@ import Weekdays from './Weekdays'
 import axios from 'axios'
 import { ThreeDots } from "react-loader-spinner"
 
-export default function CreateHabit ({setClicked, refresh, setRefresh}) {
-    const {habit, setHabit}= useContext(UserContext);
-    const [disabled, setDisabled] = useState(false);
 
+export default function CreateHabit ({habit, setHabit, setClicked, refresh, setRefresh}) {
+    const {config} = useContext(UserContext);
+    const [disabled, setDisabled] = useState(false);
+    
     function habitSubmit(e){
         e.preventDefault();
         setDisabled(true);
-        const config={
-            headers: {Authorization: `Bearer ${localStorage.getItem('trackit')}`}
-        };
-        const promise=axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', config, habit);
+        const promise=axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', habit, config);
         promise.then(()=>{
-            setHabit({
-                habitName: '',
-                weekDays: []
-            });
-            setRefresh(!refresh);
+
             setClicked(false);
             setDisabled(false);
-        promise.catch(()=>{
+            setRefresh(!refresh);
+            setHabit({
+                name: '',
+                days: []
+            });
+
+            promise.catch(()=>{
             setDisabled(false);
             alert('Houve algum erro em adicionar o hábito.');
         })
@@ -43,14 +43,18 @@ export default function CreateHabit ({setClicked, refresh, setRefresh}) {
                 <input 
                 type='text'
                 placeholder='nome do hábito'
-                onChange={(e) => setHabit({ ...habit, habitName: e.target.value })}
+                onChange={(e) => setHabit({ ...habit, name: e.target.value })}
                 disabled={disabled}
-                value={habit.habitName}
+                value={habit.name}
                 required
                 /> 
-                <Weekdays/>
+                <Weekdays 
+                habit={habit} 
+                setHabit={setHabit} 
+                disabled={disabled} 
+                nonEditable={false}/>
                 <Save>
-                    <button disabled={disabled} onClick={Cancel}>Cancelar</button>
+                    <button type='submit' disabled={disabled} onClick={Cancel}>Cancelar</button>
                     <Button medium disabled={disabled}>
                         {disabled ?
                         <ThreeDots

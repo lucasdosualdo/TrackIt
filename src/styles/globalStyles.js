@@ -74,6 +74,11 @@ h4 {
 	font-size: 23px;
 }
 
+h5 {
+	color: #666666;
+	font-weight: 400;
+	font-size: 20px;
+}
 h6 {
 	color: #52B6FF;
 	font-size: 14px;
