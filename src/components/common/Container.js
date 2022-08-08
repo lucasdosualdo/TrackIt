@@ -14,7 +14,4 @@ height: 100vh;
 h4 {
     margin-bottom: 5px;
 }
-p {
-    color: #BABABA;
-}
 `

@@ -1,31 +1,75 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import UserContext from '../contexts/UserContext';
 import styled from "styled-components"
 import { Button } from './common'
 import Weekdays from './Weekdays'
+import axios from 'axios'
+import { ThreeDots } from "react-loader-spinner"
 
-export default function CreateHabit () {
-    const {clicked, setClicked}=useContext(UserContext);
+export default function CreateHabit ({setClicked, refresh, setRefresh}) {
     const {habit, setHabit}= useContext(UserContext);
+    const [disabled, setDisabled] = useState(false);
+
+    function habitSubmit(e){
+        e.preventDefault();
+        setDisabled(true);
+        const config={
+            headers: {Authorization: `Bearer ${localStorage.getItem('trackit')}`}
+        };
+        const promise=axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', config, habit);
+        promise.then(()=>{
+            setHabit({
+                habitName: '',
+                weekDays: []
+            });
+            setRefresh(!refresh);
+            setClicked(false);
+            setDisabled(false);
+        promise.catch(()=>{
+            setDisabled(false);
+            alert('Houve algum erro em adicionar o hábito.');
+        })
+        });
+    }
+
+    function Cancel () {
+        setClicked(false);
+        setHabit({...habit})
+    }
+
         return (
             <>
-            <Box>   
+            <Box onSubmit = {habitSubmit}>   
                 <input 
                 type='text'
                 placeholder='nome do hábito'
+                onChange={(e) => setHabit({ ...habit, habitName: e.target.value })}
+                disabled={disabled}
+                value={habit.habitName}
                 required
                 /> 
                 <Weekdays/>
                 <Save>
-                    <p>Cancelar</p>
-                    <Button medium>Salvar</Button>
+                    <button disabled={disabled} onClick={Cancel}>Cancelar</button>
+                    <Button medium disabled={disabled}>
+                        {disabled ?
+                        <ThreeDots
+                        type="ThreeDots"
+                        color="#FFFFFF"
+                        height={10}
+                        width={43}
+                        timeout={0}
+                        />  :
+                        <h3>Salvar</h3>
+                        }
+                    </Button>
                 </Save>                           
             </Box>
             </>
         )
     }
    
-    const Box = styled.div`
+    const Box = styled.form`
     width: 100%;
     background-color: white;
     border-radius: 5px;
@@ -58,9 +102,12 @@ export default function CreateHabit () {
     position: absolute;
     bottom: 15px;
     right: 15px;
-    p {
+    button {
         margin-right: 22px;
         color: #52B6FF;
         font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        background-color: #FFFFFF;
     }
     `

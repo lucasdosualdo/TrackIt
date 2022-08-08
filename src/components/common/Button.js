@@ -9,7 +9,7 @@ export default function Button ({children, ...otherProps}){
 }
 
 const Wrapper=styled.button`
-background-color: ${(props)=> (props.disabled ? '#86CCFF' : '#52B6FF')};
+background-color: ${(props)=> (props.disabled ? '#86CCFF' : '#52B6FF')} !important;
 width: 270px;
 height: 45px;
 display: flex;

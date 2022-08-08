@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import UserContext from '../contexts/UserContext';
 import Footer from "./common/Footer";
 import Container from "./common/Container";
+import styled from "styled-components";
 
 export default function Today () {
     
@@ -12,7 +13,7 @@ return (
 <Header/>
 <Container>  
     <Showdate />
-    <p>Nenhum hábito foi concluído ainda</p>
+    <Description>Nenhum hábito foi concluído ainda</Description>
 </Container>
 <Footer/>
 </>   
@@ -60,6 +61,10 @@ function Showdate() {
         <h4>{diaConvertido}, {date}</h4>  
     )
 }
+
+const Description= styled.div`
+color: #666666;
+`
 
 
 

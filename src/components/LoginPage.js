@@ -8,40 +8,29 @@ import { ThreeDots } from "react-loader-spinner";
 import axios from 'axios';
 
 export default function LoginPage () {
-    const {email, setEmail}=useContext(UserContext);
-    const {password, setPassword}=useContext(UserContext);
-    const {image, setImage}=useContext(UserContext); 
+    const {user, setUser} = useContext(UserContext);
     const [required, setRequired] = useState(true);
     const [disabled, setDisabled] = useState(false);
+    const [loginUser, setLoginUser] = useState({
+        email: "",
+        password: "",
+    })
     let navigate= useNavigate();
 
     function LoginForm(e){
         setRequired(false);
         setDisabled(true);
         e.preventDefault();
-        const body = {
-            email,
-            password
-        }
-        console.log(body);
-        const request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', body);
+        const request = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login', loginUser);
         request.then(answer => {
-            setEmail('');
-            setPassword('');
-            console.log(answer.data);
             localStorage.setItem('trackit', answer.data.token);
-            console.log(localStorage.getItem('trackit'));
-            setImage(answer.data.image);
-            console.log(image);
+            setUser(answer.data);
             navigate('/hoje');
-        });
-            
+        });      
             
         request.catch(()=>{
             setRequired(true);
             setDisabled(false);
-            setEmail('');
-            setPassword('');
             alert('Falha ao realizar o login.')
         });
     }
@@ -55,16 +44,16 @@ export default function LoginPage () {
             <input
             type='text'
             placeholder='email'
-            onChange={((e)=>setEmail(e.target.value))}
-            value={email}
+            onChange={((e)=>setLoginUser({...loginUser, email: e.target.value}))}
+            value={loginUser.email}
             required={required}
             disabled={disabled}
             />
             <input
             type='password'
             placeholder='senha'
-            onChange={((e)=>setPassword(e.target.value))}
-            value={password}
+            onChange={((e)=>setLoginUser({...loginUser, password: e.target.value}))}
+            value={loginUser.password}
             required={required}
             disabled={disabled}
             />

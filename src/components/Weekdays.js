@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import UserContext from "../contexts/UserContext";
 
 export default function Weekdays () {
@@ -16,7 +16,7 @@ export default function Weekdays () {
 
 return (
     <WeekdayBox >
-    {days.map((day, index) => <Weekday habit={habit} index={index} onClick={()=>selectDay(index)}>
+    {days.map((day, index) => <Weekday habit={habit} key = {index} index={index} onClick={()=>selectDay(index)}>
             {day}
             </Weekday>)}
     </WeekdayBox>
