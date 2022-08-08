@@ -13,9 +13,13 @@ export default function App() {
     const [password, setPassword]=useState('');
     const [name, setName]=useState('');
     const [image, setImage]=useState('');
-    const [day, setDay]=useState('testandoday');
+    const [day, setDay]=useState('');
     const [date, setDate]=useState('');
-    const [weekday, setWeekday]=useState([]);
+    const [clicked, setClicked]=useState(false);
+    const [habit, setHabit] = useState({
+        habitName: "",
+        weekDays: [],
+    })
 
     return (
         <>
@@ -31,8 +35,12 @@ export default function App() {
             setImage,
             day,
             setDay,
+            clicked,
+            setClicked,
             date,
-            setDate
+            setDate,
+            habit,
+            setHabit
         }}>
         <BrowserRouter>
         <Routes>

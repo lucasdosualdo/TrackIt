@@ -1,58 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import UserContext from '../contexts/UserContext';
 import styled from "styled-components"
-import { Button } from './common';
+import { Button } from './common'
+import Weekdays from './Weekdays'
 
 export default function CreateHabit () {
-
-    function MapArray () {    
-        return (
-            <>
-            {arrayDays.map((day, index)=>
-               <WeekdayBox key = {index}>
-                {day.sigla}
-               </WeekdayBox> )}          
-            </>          
-        )
-    }
-    const {weekday, setWeekday}=useContext(UserContext);   
-    const arrayDays=[
-        {
-        day: 'Domingo',
-        sigla: 'D',
-        index: 0   
-    },
-    {
-        day: 'Segunda',
-        sigla: 'S',
-        index: 1   
-    },
-    {
-        day: 'Terça',
-        sigla: 'T',
-        index: 2   
-    },
-    {
-        day: 'Quarta',
-        sigla: 'Q',
-        index: 3   
-    },
-    {
-        day: 'Quinta',
-        sigla: 'Q',
-        index: 4   
-    },
-    {
-        day: 'Sexta',
-        sigla: 'S',
-        index: 5   
-    },
-    {
-        day: 'Sábado',
-        sigla: 'S',
-        index: 6   
-    }
-    ]   
+    const {clicked, setClicked}=useContext(UserContext);
+    const {habit, setHabit}= useContext(UserContext);
         return (
             <>
             <Box>   
@@ -60,23 +14,17 @@ export default function CreateHabit () {
                 type='text'
                 placeholder='nome do hábito'
                 required
-                />
-                <div>
-                <MapArray/>
-                </div>   
-                
-                    <Save>
+                /> 
+                <Weekdays/>
+                <Save>
                     <p>Cancelar</p>
                     <Button medium>Salvar</Button>
-                    </Save>
-                            
+                </Save>                           
             </Box>
             </>
         )
     }
-
    
-
     const Box = styled.div`
     width: 100%;
     background-color: white;
@@ -103,18 +51,7 @@ export default function CreateHabit () {
         display: flex; 
     }
     `
-    const WeekdayBox = styled.div`
-    width: 30px;
-    height: 30px;
-    background-color: white;
-    color: #CFCFCF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #D5D5D5;
-    border-radius: 5px;
-    margin-right: 5px;
-    `
+    
     const Save = styled.div`
     display: flex;
     align-items: center;
