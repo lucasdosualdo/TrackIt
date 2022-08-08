@@ -36,6 +36,7 @@ body {
 	width: 100vw;
   height: 100vh;
   font-family: 'Lexend Deca';
+  background-color: #F2F2F2; 
 }
 
 ol, ul {

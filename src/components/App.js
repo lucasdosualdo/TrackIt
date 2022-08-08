@@ -14,6 +14,7 @@ export default function App() {
     const [day, setDay]=useState('');
     const [date, setDate]=useState('');
     const [render, setRender]=useState(false);
+    const [percentage, setPercentage]=useState(0);
     const [habit, setHabit] = useState({
         name: "",
         days: [],
@@ -37,7 +38,9 @@ export default function App() {
             render,
             setRender,
             config,
-            setConfig
+            setConfig,
+            percentage,
+            setPercentage
         }}>
         <BrowserRouter>
         <Routes>

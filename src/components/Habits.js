@@ -48,6 +48,7 @@ export default function Habits () {
                <h3>+</h3>
             </Button>
             </AddHabits>
+            <HabitsBox>
             {clicked ?
             <CreateHabit 
             setClicked={setClicked}
@@ -58,15 +59,23 @@ export default function Habits () {
             /> :
               ''
             }
+            
             {habitsList.length===0 ?
             <Description>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
             </Description> :
-            habitsList.map((habit, index)=> 
+           
+           habitsList.map((habit, index)=> 
             <Habit 
             key={index} 
             index={index} 
             habit={habit}
             deleteHabit={() => deleteHabit(habit)}/>)}
+            </HabitsBox>
+            
+            
+            
+            
+            
                                  
         </Container>
         <Footer/>
@@ -87,4 +96,10 @@ color: #666666;
 line-height: 18px;
 margin-top: 30px;
 `
+
+const HabitsBox=styled.div`
+width: 100%;
+margin-bottom: 120px;
+`
+
 
