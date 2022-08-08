@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 import UserContext from '../../contexts/UserContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 
 export default function Header () {
+    const navigate = useNavigate();
     const {user} = useContext(UserContext);
+
+    useEffect(()=>{
+        if (user === "") {
+            navigate("/");
+        }
+    }, [user, navigate])
     return (
         <HeaderStyle>
            <h1>TrackIt</h1>

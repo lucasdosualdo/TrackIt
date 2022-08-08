@@ -7,12 +7,11 @@ export default function Container ({children}) {
 }
 
 const ContainerStyle = styled.div`
-padding: 100px 18px 0 18px;
+padding: 100px 30px 0 30px;
 background-color: #F2F2F2;
 width: 100%;
-
 display: flex;
-    flex-direction: column;
+flex-direction: column;
 h4 {
     margin-bottom: 5px;
 }

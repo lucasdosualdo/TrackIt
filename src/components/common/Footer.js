@@ -2,16 +2,32 @@ import styled from 'styled-components';
 import UserContext from '../../contexts/UserContext';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
 
 export default function Footer () {
+    const { percentage } = useContext(UserContext);
     return (
         <FooterStyle>
             <Link to ='/habitos'>
             <p>Hábitos</p>
             </Link>
+            <div>
+            <CircularProgressbarWithChildren
+            background
+            backgroundPadding={6}
+            value={percentage}
+            styles={buildStyles({
+            backgroundColor: "#52B6FF",
+            textColor: "#fff",
+            pathColor: "#fff",
+            trailColor: "transparent",
+            strokeLinecap: "round",
+            })}>
             <Link to = '/hoje'>
-            <div>Hoje</div>
+            <p>Hoje</p>
             </Link>
+            </CircularProgressbarWithChildren>
+            </div>
             <Link to ='/historico'>
             <p>Histórico</p>
             </Link>
@@ -30,17 +46,21 @@ right: auto;
 display: flex;
 justify-content: space-around;
 align-items: center;
-color: #52B6FF;
+a{ 
+    text-decoration: none;
+}
+p{
+    color: #52B6FF;
 font-size: 18px;
+}
 div {
     width: 90px;
     height: 90px;
-    border-radius: 100%;
-    background-color: #52B6FF;
     margin-bottom: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #FFFFFF;
+   
+    p{
+        color: #FFFFFF;
+    }
+    
 }
 `
