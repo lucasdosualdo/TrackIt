@@ -39,7 +39,8 @@ padding: 0 20px;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 img {
     width: 51px;
-    height: auto;
+    height: 51px;
+    object-fit: cover;
     border-radius: 100%;
 }
 `
