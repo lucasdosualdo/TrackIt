@@ -65,8 +65,8 @@ table {
 h1 {
 	color: #FFFFFF;
 	font-family: 'Playball';
-font-weight: 400;
-font-size: 40px;
+	font-weight: 400;
+	font-size: 40px;
 }
 
 h4 {
