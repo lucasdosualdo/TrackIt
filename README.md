@@ -30,7 +30,7 @@ You can try it out at [projeto10-trackit-dusky-seven.vercel.app](https://projeto
 
 1. Clone this repository
 ```bash
-git clone https://github.com/lucasdosualdo/projeto10-trackit.git
+git clone https://github.com/lucasdosualdo/TrackIt.git
 ```
 2. Install dependencies
 ```bash
