@@ -44,4 +44,4 @@ npm start
 ```bash
 npm run build
 ```
-5. Finally access http://localhost:3000 on your favorite browser (unless it is Internet Explorer).
+5. Finally access http://localhost:3000 on your favorite browser.
